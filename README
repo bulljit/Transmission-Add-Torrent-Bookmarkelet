@@ -1,0 +1,23 @@
+Usage Instructions:
+
+Adding torrents to your Transmission-WebUI from your Iphone has never been easier:
+  - Surf to your favorite public torrent site
+  - Click on the provided bookmarklet
+  - A new tab/window will be open to your Transmission/Web/fetchtorrent.html
+  - If all goes well the torrent will be added
+  - Close the current page by clicking the red X
+  - You should now find yourself back on your favorite torrent site ready to download another one :)
+
+
+Installation:
+
+  - Copy the server-side files to your Transmission/Web/ directory
+      - If using the native Mac OS X Transmission.app this should be located under "~/Applications/Transmission.app/Contents/Resources/web "
+        - web/fetchtorrent.html
+        - web/images/graphics/diag_top.png
+        - web/images/graphics/diag_mid.png
+        - web/images/graphics/diag_bottom.png
+
+  - Modify the following bookmarklet by replacing "127.0.0.1:9091" without your server's "public.ip:port"
+
+javascript:(function(){var%20serverAddress%20=%20%22127.0.0.1:9091%22;var%20a=document.getElementsByTagName(%27a%27);for(var%20i=0,j=a.length;i<j;i++){var%20linkurl%20=%20a[i].getAttribute(%27href%27);a[i].setAttribute(%27target%27,%27_blank%27);a[i].setAttribute(%27href%27,%22http://%22%20+%20serverAddress%20+%20%22/transmission/web/fetchtorrent.html?torrentlink=%22%20+%20linkurl);var%20img=document.createElement(%27img%27);img.setAttribute(%27class%27,%20%27new-window%27);img.setAttribute(%27src%27,%27data:image/gif;base64,%27+%27R0lGODlhEAAMALMLAL66tBISEjExMdTQyBoaGjs7OyUlJWZmZgAAAMzMzP///////wAAAAAAAAAAAAAA%27+%27ACH5BAEAAAsALAAAAAAQAAwAAAQ/cMlZqr2Tps13yVJBjOT4gYairqohCTDMsu4iHHgwr7UA/LqdopZS%27+%27DBBIpGG5lBQH0GgtU9xNJ9XZ1cnsNicRADs=%27);img.setAttribute(%27style%27,%27width:16px!important;height:12px!important;border:none!important;%27);a[i].appendChild(img);}})();
