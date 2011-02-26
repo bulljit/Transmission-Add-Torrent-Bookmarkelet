@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>Fetch Torrent</title>
+<style type="text/css">
+body {
+	background-color: #999;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	text-align: left;
+}
+a:link {
+	text-decoration: none;
+	color: #900;
+}
+a:visited {
+	text-decoration: none;
+	color: #900;
+}
+a:hover {
+	text-decoration: none;
+	color: #900;
+}
+a:active {
+	text-decoration: none;
+	color: #900;
+}
+#diag_list{
+	background:url(images/graphics/diag_mid.png) repeat-y;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	padding-left:15px;
+	text-align: left;
+	color: #333;
+}
+</style>
+
+
+<script language="JavaScript" type="text/JavaScript">
+
+/* Bookmarkelet: Change "127.0.0.1:9091" to your public.ip:port
+
+javascript:(function(){var%20serverAddress%20=%20%22127.0.0.1:9091%22;var%20a=document.getElementsByTagName(%27a%27);for(var%20i=0,j=a.length;i<j;i++){var%20linkurl%20=%20a[i].getAttribute(%27href%27);a[i].setAttribute(%27target%27,%27_blank%27);a[i].setAttribute(%27href%27,%22http://%22%20+%20serverAddress%20+%20%22/transmission/web/fetchtorrent.html?torrentlink=%22%20+%20linkurl);var%20img=document.createElement(%27img%27);img.setAttribute(%27class%27,%20%27new-window%27);img.setAttribute(%27src%27,%27data:image/gif;base64,%27+%27R0lGODlhEAAMALMLAL66tBISEjExMdTQyBoaGjs7OyUlJWZmZgAAAMzMzP///////wAAAAAAAAAAAAAA%27+%27ACH5BAEAAAsALAAAAAAQAAwAAAQ/cMlZqr2Tps13yVJBjOT4gYairqohCTDMsu4iHHgwr7UA/LqdopZS%27+%27DBBIpGG5lBQH0GgtU9xNJ9XZ1cnsNicRADs=%27);img.setAttribute(%27style%27,%27width:16px!important;height:12px!important;border:none!important;%27);a[i].appendChild(img);}})();
+
+*/
+
+var downloadUrl;
+var sessionId;
+
+// cross-site xmlhttprequest restrictions prevents incorporation of this javascript into the client-side bookmarkelet, this server-side .html acts as a workaround
+
+// if you do NOT want to manually type in authentication then use the following url format:
+//   http://username:password@ip.address:port/this.html
+
+// parse URL parameters to array  
+// given http://localhost/this.html?name1="value1"&name2="value2"
+//   url.name1 will return "value1" 
+
+(function(location){
+        var url = window.url = {},
+                query = location.search.substr(1),
+                arrParams = [],
+                param = '';
+                len = 0,
+                i = 0;
+        url._location = location;
+ 
+        arrParams = query.split("&");
+        len = arrParams.length
+        for(i=0; i<len; i++){
+                param = arrParams[i].split("=");
+                url[param[0]] = unescape(param[1]);
+				// consider changing unescape() to decodeURI()
+        }})(document.location);
+
+
+function AddTorrent(downloadUrl) {
+	
+	// POST data can be obtained from "transmission-remote [options]--debug 2>&1" in Terminal.app
+	// example json_data for --add
+	//   '{"arguments":{"filename":"http://www.example.com/new.torrent"},"method":"torrent-add","tag":8}'
+	
+	if (!downloadUrl) {
+		alertDiag("ERROR: download url undefined");
+		return;
+		// downloadUrl = this.href;
+	}
+	
+	var data = JSON.stringify({arguments:{filename:downloadUrl},method:"torrent-add",tag:8});
+
+	var httpRequest = new XMLHttpRequest();
+	httpRequest.open("POST", "/transmission/rpc", true);
+		
+	if (sessionId) {
+		httpRequest.setRequestHeader("X-Transmission-Session-Id", sessionId);
+	}
+	
+	httpRequest.onreadystatechange = function() {
+	
+		if (httpRequest.readyState == 4) {
+			var httpResponse = httpRequest.responseText;			
+			try {
+				if (httpResponse.length > 0) {
+					if (httpRequest.status == 200) { // status OK
+						var httpResponse = httpRequest.responseText;
+						var jsonResponse = JSON.parse(httpResponse);
+						// json key containing dash-hyphen '-' is an invalid javascript identifier, so we need to use array [' '] syntax instead
+						if (jsonResponse.result == "success"){
+							alertDiag(jsonResponse.result + ': added ' + jsonResponse['arguments']['torrent-added']['name']);
+						}
+						else {
+							alertDiag('ERROR: ' + jsonResponse.result);
+							// alert(httpResponse);
+						}
+					}
+					else if (httpRequest.status == 409) { // need new session-id
+						sessionId = httpRequest.getResponseHeader("X-Transmission-Session-Id");
+						AddTorrent(downloadUrl);
+					}
+					else if (httpRequest.status == 401) {
+						alertDiag("Error 401 - Unauthorized User");
+					}
+					else {
+						alertDiag("Unknown Http.Status: " + httpRequest.status);
+					}
+				} 
+				else {
+					alertDiag("ERROR: Empty response");
+				}
+			} 
+			catch (e) { 
+				alertDiag("Unknown Error: " + e);
+			}
+		}		
+	}	
+	httpRequest.send(data);
+};
+
+// close current window without prompt dialog
+function CloseWindow() {
+	window.open('', '_self', ''); window.close();
+}
+
+function alertDiag(responseDiag){
+	document.getElementById('diag_list').innerHTML = responseDiag;
+}
+
+window.onload = AddTorrent(url.torrentlink);
+
+</script>
+
+</head>
+
+<body>
+<table width="316" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td style="text-align: right; color: #333;"><a href="javascript:CloseWindow();">X</a></td>
+  </tr>
+  <tr>
+    <td><img src="images/graphics/diag_top.png" width="299" height="32" /></td>
+  </tr>
+  <tr>
+    <td id="diag_list">Sending Request ...</td>
+  </tr>
+  <tr>
+    <td><img src="images/graphics/diag_bottom.png" width="299" /></td>
+  </tr>
+  <tr>
+    <td style="font-size: 14px;">&nbsp;</td>
+  </tr>
+</table>
+</body>
+
+</html>
