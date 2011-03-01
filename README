@@ -1,12 +1,13 @@
 Usage Instructions:
 
 Adding torrents to your Transmission-WebUI from your Iphone has never been easier:
-  - Surf to your favorite public torrent site
-  - Click on the provided bookmarklet
-  - A new tab/window will be open to your Transmission/Web/fetchtorrent.html
-  - If all goes well the torrent will be added
-  - Close the current page by clicking the red X
-  - You should now find yourself back on your favorite torrent site ready to download another one :)
+
+1. In Safari, open the page containing the Torrent file(s) you want to download.
+2. Once the page has loaded, click the bookmarklet, which adds an 'external window' icon next to all torrent links.
+3. Click the 'download' link for the Torrent that you want.
+4. A new page opens, and transmits it to your remote Transmission client.
+5. Once completed, press the 'x' to return to the previous window.
+6. Repeat from step 3 to download other torrents from the page.
 
 
 Installation:
