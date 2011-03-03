@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en">
+<head>
+<title>Transmission Bookmarklet Install</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width" />
+
+<script type="text/javascript">
+<!--
+
+function InitForm() {
+	document.forms['bookmarklet_form'].host.value = document.location.hostname;
+	document.forms['bookmarklet_form'].port.value = document.location.port;
+
+NewBookmarklet();
+
+}
+
+function NewBookmarklet() {
+	
+	var jsString1 = 'javascript:(function(){var%20serverAddress%20=%20%22';
+	var jsString2 = '%22;var%20a=document.getElementsByTagName(%27a%27);for(var%20i=0,j=a.length;i<j;i++){var%20linkurl%20=%20a[i].getAttribute(%27href%27);a[i].setAttribute(%27target%27,%27_blank%27);a[i].setAttribute(%27href%27,%22http://%22%20+%20serverAddress%20+%20%22/transmission/web/fetchtorrent.html?torrentlink=%22%20+%20linkurl);var%20img=document.createElement(%27img%27);img.setAttribute(%27class%27,%20%27new-window%27);img.setAttribute(%27src%27,%27data:image/gif;base64,%27+%27R0lGODlhEAAMALMLAL66tBISEjExMdTQyBoaGjs7OyUlJWZmZgAAAMzMzP///////wAAAAAAAAAAAAAA%27+%27ACH5BAEAAAsALAAAAAAQAAwAAAQ/cMlZqr2Tps13yVJBjOT4gYairqohCTDMsu4iHHgwr7UA/LqdopZS%27+%27DBBIpGG5lBQH0GgtU9xNJ9XZ1cnsNicRADs=%27);img.setAttribute(%27style%27,%27width:16px!important;height:12px!important;border:none!important;%27);a[i].appendChild(img);}})();';
+
+	var hostBox = document.forms['bookmarklet_form'].host.value;
+	var portBox = document.forms['bookmarklet_form'].port.value;
+	var jsFinal = jsString1 + hostBox + ':' + portBox + jsString2;
+	var jsFinal2 = '#' + jsFinal;
+	document.links["from_mac"].href = jsFinal;
+	document.links["from_iphone"].href = jsFinal2;
+
+}
+
+
+// -->
+</script>
+<style type="text/css">
+
+</style>
+
+</head>
+<body onload="InitForm();">
+<form name="bookmarklet_form" action="#" onsubmit="NewBookmarklet(); return false">
+  <table width="300" align="center" cellpadding="0" cellspacing="0" class="form">
+<tr>
+<td>Host*</td>
+<td><input name="host" /></td>
+</tr>
+
+<tr>
+<td>Port</td>
+<td><input name="port" /></td>
+</tr>
+<tr><td colspan="2"><input type="submit" value="Update Info" /><br /></td></tr>
+</table>
+</form>
+
+<p>* Host should be your computer's external IP, not localhost, 127.0.0.1, 192.168.0.x, etc. If you need help finding this, visit <a href="http://checkip.dyndns.org">here</a>.</p>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><p>To install from Mac: </p>
+    <p>Drag this link to the tool bar and then sync your iPhone</p></td>
+  </tr>
+  <tr>
+    <td><a href=" " name="from_mac">AddTorrent</a></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><p>To install from Iphone: </p>
+    <p>click the link below | add bookmark | edit bookmark to remove all text before &quot;javascript:&quot;</p></td>
+  </tr>
+  <tr>
+    <td><a href=" " name="from_iphone">AddTorrent</a></td>
+  </tr>
+</table>
+</body>
+</html>
