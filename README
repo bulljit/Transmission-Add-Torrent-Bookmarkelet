@@ -14,6 +14,7 @@ Installation:
 
   - Copy the server-side files to your Transmission/Web/ directory
   	- web/fetchtorrent.html
+        - web/installbmlet.html
   	- web/images/graphics/diag_top.png
   	- web/images/graphics/diag_mid.png
   	- web/images/graphics/diag_bottom.png
@@ -24,7 +25,7 @@ Installation:
 
 Simple Method:
 
-There is now a web page to install the bookmarklet for you. It works on the Mac as well as the iPone. Just browse to the following page and follow the instructions:
+There is now a web page to install the bookmarklet for you. It works on the Mac as well as the iPhone or iPad. Just browse to the following page and follow the instructions:
 
 http://yourserver.ip:port/transmission/web/installbmlet.html
 
