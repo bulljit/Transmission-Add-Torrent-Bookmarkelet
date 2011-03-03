@@ -20,7 +20,20 @@ Installation:
   
   - If using the native Mac OS X Transmission.app this should be located under "~/Applications/Transmission.app/Contents/Resources/web"
 
+  - Install the bookmarklet on your phone:
 
-  - Modify the following bookmarklet by replacing "127.0.0.1:9091" with your server's "public.ip:port" and add it to your iPhone
+Simple Method:
+
+There is now a web page to install the bookmarklet for you. It works on the Mac as well as the iPone. Just browse to the following page and follow the instructions:
+
+http://yourserver.ip:port/transmission/web/installbmlet.html
+
+(Replace 'yourserver.ip:port' with your server and port address)
+
+Manual Method:
+
+Modify the following bookmarklet by replacing "127.0.0.1:9091" with your server's "public.ip:port" and add it to your iPhone
 
 javascript:(function(){var%20serverAddress%20=%20%22127.0.0.1:9091%22;var%20a=document.getElementsByTagName(%27a%27);for(var%20i=0,j=a.length;i<j;i++){var%20linkurl%20=%20a[i].getAttribute(%27href%27);a[i].setAttribute(%27target%27,%27_blank%27);a[i].setAttribute(%27href%27,%22http://%22%20+%20serverAddress%20+%20%22/transmission/web/fetchtorrent.html?torrentlink=%22%20+%20linkurl);var%20img=document.createElement(%27img%27);img.setAttribute(%27class%27,%20%27new-window%27);img.setAttribute(%27src%27,%27data:image/gif;base64,%27+%27R0lGODlhEAAMALMLAL66tBISEjExMdTQyBoaGjs7OyUlJWZmZgAAAMzMzP///////wAAAAAAAAAAAAAA%27+%27ACH5BAEAAAsALAAAAAAQAAwAAAQ/cMlZqr2Tps13yVJBjOT4gYairqohCTDMsu4iHHgwr7UA/LqdopZS%27+%27DBBIpGG5lBQH0GgtU9xNJ9XZ1cnsNicRADs=%27);img.setAttribute(%27style%27,%27width:16px!important;height:12px!important;border:none!important;%27);a[i].appendChild(img);}})();
+
+

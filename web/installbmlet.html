@@ -31,7 +31,7 @@
 			padding: 0;
 			width: 320px;
 			font-family: Helvetica, sans-serif;
-			font-size: 17px;
+			font-size: 16px;
 			-webkit-text-size-adjust: none;
 			background-color: white;
 			}
@@ -89,17 +89,87 @@
 	<script type="text/javascript" charset="utf-8">
 		window.addEventListener("load", function(){window.scrollTo(0,1)});
 	</script>
+	
+	<script type="text/javascript">
+<!--
+
+function InitForm() {
+	document.forms['bookmarklet_form'].host.value = document.location.hostname;
+	document.forms['bookmarklet_form'].port.value = document.location.port;
+
+NewBookmarklet();
+
+}
+
+function NewBookmarklet() {
+	
+	var jsString1 = 'javascript:(function(){var%20serverAddress%20=%20%22';
+	var jsString2 = '%22;var%20a=document.getElementsByTagName(%27a%27);for(var%20i=0,j=a.length;i<j;i++){var%20linkurl%20=%20a[i].getAttribute(%27href%27);a[i].setAttribute(%27target%27,%27_blank%27);a[i].setAttribute(%27href%27,%22http://%22%20+%20serverAddress%20+%20%22/transmission/web/fetchtorrent.html?torrentlink=%22%20+%20linkurl);var%20img=document.createElement(%27img%27);img.setAttribute(%27class%27,%20%27new-window%27);img.setAttribute(%27src%27,%27data:image/gif;base64,%27+%27R0lGODlhEAAMALMLAL66tBISEjExMdTQyBoaGjs7OyUlJWZmZgAAAMzMzP///////wAAAAAAAAAAAAAA%27+%27ACH5BAEAAAsALAAAAAAQAAwAAAQ/cMlZqr2Tps13yVJBjOT4gYairqohCTDMsu4iHHgwr7UA/LqdopZS%27+%27DBBIpGG5lBQH0GgtU9xNJ9XZ1cnsNicRADs=%27);img.setAttribute(%27style%27,%27width:16px!important;height:12px!important;border:none!important;%27);a[i].appendChild(img);}})();';
+
+	var hostBox = document.forms['bookmarklet_form'].host.value;
+	var portBox = document.forms['bookmarklet_form'].port.value;
+	var jsFinal = jsString1 + hostBox + ':' + portBox + jsString2;
+	var jsFinal2 = '#' + jsFinal;
+	document.links["from_mac"].href = jsFinal;
+	document.links["from_iphone"].href = jsFinal2;
+
+}
+
+
+// -->
+</script>
 
 </head>
-<body>
+<body onload="InitForm();">
 	<div id="container">
-		<h1>'Download Torrent' Bookmarklet Setup</h1>
+		<h1>Transmission Bookmarklet Setup</h1>
 		<div class="group">
 			<p>
-				These step-by-step instructions show you how to add a bookmark that will download the Torrents on the current page to your remote Transmission client.
+				These step-by-step instructions show you how to add a bookmark that will send the Torrents on a web page to your remote Transmission client.
 			</p>
 		</div>
 	
+		<h1>Getting Started</h1>
+		<div class="group">
+			<p>
+				Enter the external IP address (or web address) and Port number of your remote computer, and click update.
+</p>
+<form name="bookmarklet_form" action="#" onsubmit="NewBookmarklet(); return false">
+  <table width="200" align="center" cellpadding="0" cellspacing="0" class="form">
+<tr>
+<td>Host*</td>
+<td><input name="host" /></td>
+</tr>
+
+<tr>
+<td>Port</td>
+<td><input name="port" /></td>
+</tr>
+<tr><td colspan="2"><input type="submit" value="Update Info" /><br /></td></tr>
+</table><br>
+</form>
+			<p>	
+				* Note: Host should be your computer's external IP, not localhost, 127.0.0.1, 192.168.0.x, etc. If you need help finding this, visit <a target="_blank" href="http://checkip.dyndns.org">here</a>.
+			</p>
+		</div>
+		
+<h1>Where are you installing from?</h1>
+		<div class="group">
+  <p><strong>To install from your Mac:</strong> </p>
+    <p>Drag this link to the toolbar and then sync it to your iPhone.</p>
+  
+    <strong><center><a href=" " name="from_mac">Download Torrent Remotely!</a></center></strong>
+    <p>That's it - you're done!</p>
+ </div><p><div class="group">
+  <p><strong>To install from your iPhone:</strong> </p>
+    <p>First, click the link below to prepare the bookmarklet:
+ 
+    <strong><center><a href=" " name="from_iphone">Click to prepare iPhone install!</a></center></strong>
+    <p>
+       Now follow the steps below:
+			</p>
+		
+		</div>		
 		<h1>Step 1: Bookmark This Page</h1>
 		<div class="group">
 			<p>
@@ -116,7 +186,7 @@
 			</div>
 		</div>
 
-		<h1>Step 2: Edit The Bookmark</h1>
+		<h1>Step 3: Edit The Bookmark</h1>
 		<div class="group">
 			<p>
 				Tap the Bookmarks button in the toolbar at the bottom of the screen.
@@ -134,14 +204,17 @@
 				<img src="images/graphics/bookmarklet/edit_bookmark_start.png" alt="edit bookmark start" />
 			</div>
 			<p>
-				Place the editing point between the "?" and the "j" then tap the delete key until the editing point is at the beginning of the line. Then scroll right and find the 'myserver.ip:port' and replace this with your Transmission client server address and port number (seperating each with a colon). When you are done, your bookmark should look like this:
+				Place the editing point between the "#" and the "j" then tap the delete key until the editing point is at the beginning of the line. When you are done, your bookmark should look like this:
 			</p>
 			<div class="figure">
 				<img src="images/graphics/bookmarklet/edit_bookmark_finish.png" alt="edit bookmark finish" />
 			</div>
+			<p>
+				Save your changes and you are done!
+			</p>
 		</div>
 
-		<h1>Step 3: Use The Bookmark</h1>
+		<h1>How to use the Bookmark</h1>
 		<div class="group">
 			<p>
 				The next time you are on a page with Torrent(s) you want to download, open your bookmarks as before:
@@ -150,7 +223,7 @@
 				<img src="images/graphics/bookmarklet/open_bookmarks.png" alt="open bookmarks"/>
 			</div>
 			<p>
-				Then tap on <strong>Download Torrent Remotely!</strong>. The page will then be modified to include 'external link' icons next to all the Torrent links. Then click the link to download the Torrent you want and a new window will open which will send the Torrent file to your Transmission client. Once done, click the X to close the window, and repeat for any other Torrent you want from the page. That's it!
+				Then tap on <strong>Download Torrent Remotely!</strong>. The page will then be modified to include 'external link' icons next to all the Torrent links. Click the link to download the Torrent you want and a new window will open which will send the Torrent file to your Transmission client. Once done, click the X to close the window, and repeat for any other Torrent you want from the page. That's it!
 			</p>
 		</div>
 	</div>
