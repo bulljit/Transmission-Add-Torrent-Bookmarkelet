@@ -14,13 +14,10 @@ Installation:
 
   - Copy the server-side files to your Transmission/Web/ directory
   	- web/fetchtorrent.html
-        - web/installbmlet.html
-  	- web/images/graphics/diag_top.png
-  	- web/images/graphics/diag_mid.png
-  	- web/images/graphics/diag_bottom.png
-        - web/images/graphics/bookmarklet/* (All images)
+    - web/installbmlet.html
+    - web/images/graphics/bookmarklet/* (All images)
   
-  - If using the native Mac OS X Transmission.app this should be located under "~/Applications/Transmission.app/Contents/Resources/web"
+  - If using the native Mac OS X Transmission.app this should be located under "~/Applications/Transmission.app/Contents/Resources/web". You can access these folders by right-clicking on the Transmission.app icon and choosing 'Show Package Contents'.
 
   - Install the bookmarklet on your phone:
 
@@ -42,4 +39,6 @@ Known Issues:
 
 - Currently the bookmarklet cannot handle authentication for private trackers.
 
+If you have any feedback, please post a message in the Transmission forums:
 
+https://forum.transmissionbt.com/viewtopic.php?f=8&t=11355
