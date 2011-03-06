@@ -64,7 +64,7 @@ javascript:(function(){var%20serverAddress%20=%20%22127.0.0.1:9091%22;var%20a=do
 var downloadUrl;
 var sessionId;
 
-// cross-site xmlhttprequest restrictions prevents incorporation of this javascript into the client-side bookmarkelet, this server-side .html acts as a workaround
+// cross-site xmlhttprequest restrictions prevents incorporation of this javascript into the client-side bookmarklet, this server-side .html acts as a workaround
 
 // if you do NOT want to manually type in authentication then use the following url format:
 //   http://username:password@ip.address:port/this.html
@@ -98,7 +98,7 @@ function AddTorrent(downloadUrl) {
 	//   '{"arguments":{"filename":"http://www.example.com/new.torrent"},"method":"torrent-add","tag":8}'
 	
 	if (!downloadUrl) {
-		alertDiag("ERROR: download url undefined");
+		alertDiag("ERROR: Download URL is undefined!");
 		return;
 		// downloadUrl = this.href;
 	}
@@ -122,7 +122,7 @@ function AddTorrent(downloadUrl) {
 						var httpResponse = httpRequest.responseText;
 						var jsonResponse = JSON.parse(httpResponse);
 						// json key containing dash-hyphen '-' is an invalid javascript identifier, so we need to use array [' '] syntax instead
-						if (jsonResponse.result == "success"){
+						if (jsonResponse.result == "Success"){
 							alertDiag(jsonResponse.result + ': added ' + jsonResponse['arguments']['torrent-added']['name']);
 						}
 						else {
@@ -188,12 +188,10 @@ window.onload = AddTorrent(url.torrentlink);
   </tr>
 </table>
 <BR>
-<BR>
-<BR>
      <p>
           <h3>
                <center>
-                Transmission-Add-Torrent-Bookmarklet - Version: 0.3<BR>Check for updates <a target="_blank" href="https://github.com/bulljit/Transmission-Add-Torrent-Bookmarkelet">here</a>
+                Transmission-Add-Torrent-Bookmarklet - Ver: 0.3<BR>Check <a target="_blank" href="https://github.com/bulljit/Transmission-Add-Torrent-Bookmarkelet">here</a> for updates.
                </center>
           </h3>
      </p>
