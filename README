@@ -1,3 +1,7 @@
+--------------------------------------------------------------------------------------------------------------
+   Bookmarklet for Adding a Torrent File to Transmission from your Mobile Phone
+--------------------------------------------------------------------------------------------------------------
+
 ABOUT THIS SOLUTION
 
 This solution uses a Bookmarklet on your phone to send the URL of a Torrent to your remote Transmission client. Your Transmission client then downloads the file and then reports back to your phone with a success/failure message. The disadvantage of this solution is that it requires some files to be installed on your server. The advantage is that there is minimal bandwidth usage between your phone and Transmission (great for use over EDGE connections).
@@ -9,27 +13,9 @@ We have now added version numbering so you can check you have the latest version
 Current Version: 0.3
 Last Updated: 2011-03-06
 
-0.3 - Added activity bar to fetchtorrent.html
+0.3 - Added activity bar to fetchtorrent.html.
 0.2 - Added installbmlet.html file for easy installation of the Bookmarklet to your phone
 0.1 - Allows basic transfer of public Torrents to iPhone
-
-KNOWN ISSUES
-
-- After Transmission auto-updates the server files need to be reinstalled
-
-After Transmission installs an automatic updated the old version is moved to the Trash and the server files will need to be readded in the new version. There is no known workaround for this at this stage.
-
-- Currently the Bookmarklet cannot handle authentication for private trackers. Public trackers only.
-
-Adding support for private trackers is currently not possible without changes to the Transmission binary. There is a support ticket to add the necessary change here. Please add your support by commenting here: https://trac.transmissionbt.com/ticket/4081
-
-- If you have a username and password set for Transmission Remote Access, you will need to enter them each time you click the bookmarklet.
-
-If you wish to avoid this you can add your username and password, together with your server address and port number to the bookmarklet code. Instructions on now to do this will be added in due course.
-
-FEEDBACK
-
-- If you have any feedback, please post a message in the Transmission forums: https://forum.transmissionbt.com/viewtopic.php?f=8&t=11355
 
 INSTALLATION
 
@@ -64,7 +50,7 @@ javascript:(function(){var%20serverAddress%20=%20%22yourserver.ip:port%22;var%20
 
 USAGE INSTRUCTIONS
 
-Adding torrents to Transmission from your Phone has never been easier:
+Follow these steps to add a torrent to Transmission from your Phone:
 
 1. In your phone's browser, open the page containing the Torrent file(s) you want to download.
 2. Once the page has loaded, open your bookmarks, and click the 'Download Torrent Remotely!' bookmark. This will modify the page to add a 'new window' icon next to all the links on the page.
@@ -72,3 +58,23 @@ Adding torrents to Transmission from your Phone has never been easier:
 4. A new page will open, and sending the URL to your remote Transmission client. Transmission will then downloads the Torrent file, and start the download. The page will report success when its done.
 5. Once completed, press the 'X' to close the download window.
 6. Repeat from step 3 to download any other torrents from the page.
+
+FEEDBACK
+
+- If you have any feedback, please post a message in the Transmission forums: 
+
+https://forum.transmissionbt.com/viewtopic.php?f=8&t=11355
+
+KNOWN ISSUES
+
+- After Transmission auto-updates the server files need to be reinstalled
+
+After Transmission installs an automatic updated the old version is moved to the Trash and the server files will need to be readded in the new version. There is no known workaround for this at this stage.
+
+- Currently the Bookmarklet cannot handle authentication for private trackers. Public trackers only.
+
+Adding support for private trackers is currently not possible without changes to the Transmission binary. There is a support ticket to add the necessary change here. Please add your support by commenting here: https://trac.transmissionbt.com/ticket/4081
+
+- If you have a username and password set for Transmission Remote Access, you will need to enter them each time you click the bookmarklet.
+
+If you wish to avoid this you can add your username and password, together with your server address and port number to the bookmarklet code. Instructions on now to do this will be added in due course.
