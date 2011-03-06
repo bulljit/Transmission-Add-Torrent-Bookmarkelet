@@ -60,11 +60,11 @@ javascript:(function(){var%20serverAddress%20=%20%22yourserver.ip:port%22;var%20
 
 USAGE INSTRUCTIONS
 
-Adding torrents to to Transmission from your Phone has never been easier:
+Adding torrents to Transmission from your Phone has never been easier:
 
 1. In your phone's browser, open the page containing the Torrent file(s) you want to download.
-2. Once the page has loaded, open your bookmarks, and click the 'Download Torrent Remotely!' bookmark. This will modify the page to add an 'new window' icon next to all links.
-3. Click the 'download' link the Torrent that you want to download in Transmission.
-4. A new page opens, and transmits the URL to your remote Transmission client. Transmission then downloads the Torrent file, and starts the download.
+2. Once the page has loaded, open your bookmarks, and click the 'Download Torrent Remotely!' bookmark. This will modify the page to add a 'new window' icon next to all the links on the page.
+3. Click the 'download' link of the Torrent that you want.
+4. A new page will open, and sending the URL to your remote Transmission client. Transmission will then downloads the Torrent file, and start the download. The page will report success when its done.
 5. Once completed, press the 'X' to close the download window.
-6. Repeat from step 3 to download other torrents from the page.
+6. Repeat from step 3 to download any other torrents from the page.
