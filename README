@@ -15,6 +15,10 @@ Last Updated: 2011-03-06
 
 KNOWN ISSUES
 
+- After Transmission auto-updates the server files need to be reinstalled
+
+After Transmission installs an automatic updated the old version is moved to the Trash and the server files will need to be readded in the new version. There is no known workaround for this at this stage.
+
 - Currently the Bookmarklet cannot handle authentication for private trackers. Public trackers only.
 
 Adding support for private trackers is currently not possible without changes to the Transmission binary. There is a support ticket to add the necessary change here. Please add your support by commenting here: https://trac.transmissionbt.com/ticket/4081
