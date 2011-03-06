@@ -15,8 +15,13 @@ Last Updated: 2011-03-06
 
 KNOWN ISSUES
 
-- Currently the Bookmarklet cannot handle authentication for private trackers. Public tracker only.
+- Currently the Bookmarklet cannot handle authentication for private trackers. Public trackers only.
+
+Adding support for private trackers is currently not possible without changes to the Transmission binary. There is a support ticket to add the necessary support here. Please add your support by commenting here: https://trac.transmissionbt.com/ticket/
+
 - If you have a username and password set for Tranmission Remote Access, you will need to enter them each time you run the bookmarklet.
+
+If you wish to avoid this you can add your username and password, together with your server address and port number to the bookmarklet code. Instuctions on now to do this will be added in due course.
 
 FEEDBACK
 
@@ -58,8 +63,8 @@ USAGE INSTRUCTIONS
 Adding torrents to your Transmission-WebUI from your Phone has never been easier:
 
 1. In your phone's browser, open the page containing the Torrent file(s) you want to download.
-2. Once the page has loaded, click the 'Download Torrent Remotely!' bookmarklet, which adds an 'external window' icon next to all torrent links.
-3. Click the 'download' link for the Torrent that you want.
-4. A new page opens, and transmits the URL to your remote Transmission client. Transmission then downloads the Torrent.
+2. Once the page has loaded, open your bookmarks, and click the 'Download Torrent Remotely!' bookmark. This will modify the page to add an 'new window' icon next to all links.
+3. Click the 'download' link the Torrent that you want to download in Transmission.
+4. A new page opens, and transmits the URL to your remote Transmission client. Transmission then downloads the Torrent file, and starts the download.
 5. Once completed, press the 'X' to close the download window.
 6. Repeat from step 3 to download other torrents from the page.
