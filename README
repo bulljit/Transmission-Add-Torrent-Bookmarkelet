@@ -17,11 +17,11 @@ KNOWN ISSUES
 
 - Currently the Bookmarklet cannot handle authentication for private trackers. Public trackers only.
 
-Adding support for private trackers is currently not possible without changes to the Transmission binary. There is a support ticket to add the necessary support here. Please add your support by commenting here: https://trac.transmissionbt.com/ticket/
+Adding support for private trackers is currently not possible without changes to the Transmission binary. There is a support ticket to add the necessary change here. Please add your support by commenting here: https://trac.transmissionbt.com/ticket/4081
 
-- If you have a username and password set for Tranmission Remote Access, you will need to enter them each time you run the bookmarklet.
+- If you have a username and password set for Transmission Remote Access, you will need to enter them each time you click the bookmarklet.
 
-If you wish to avoid this you can add your username and password, together with your server address and port number to the bookmarklet code. Instuctions on now to do this will be added in due course.
+If you wish to avoid this you can add your username and password, together with your server address and port number to the bookmarklet code. Instructions on now to do this will be added in due course.
 
 FEEDBACK
 
