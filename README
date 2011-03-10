@@ -77,4 +77,10 @@ Adding support for private trackers is currently not possible without changes to
 
 - If you have a username and password set for Transmission Remote Access, you will need to enter them each time you click the bookmarklet.
 
-If you wish to avoid this you can add your username and password, together with your server address and port number to the bookmarklet code. Instructions on now to do this will be added in due course.
+If you wish to avoid this you can add your username and password, together with your server address and port number to the bookmarklet code like so:
+
+username:password@yourserver.ip:port
+
+This is not really recommended since it means that your username and password are sent insecurely, but if you are willing to take the risk then your bookmarklet should look something like this:
+
+javascript:(function(){var%20serverAddress%20=%20%22username:password@yourserver.ip:port%22;var%20a=document.getElementsByTagName(%27a%27);for(var%20i=0,j=a.length;i<j;i++){var%20linkurl%20=%20a[i].getAttribute(%27href%27);a[i].setAttribute(%27target%27,%27_blank%27);a[i].setAttribute(%27href%27,%22http://%22%20+%20serverAddress%20+%20%22/transmission/web/fetchtorrent.html?torrentlink=%22%20+%20linkurl);var%20img=document.createElement(%27img%27);img.setAttribute(%27class%27,%20%27new-window%27);img.setAttribute(%27src%27,%27data:image/gif;base64,%27+%27R0lGODlhEAAMALMLAL66tBISEjExMdTQyBoaGjs7OyUlJWZmZgAAAMzMzP///////wAAAAAAAAAAAAAA%27+%27ACH5BAEAAAsALAAAAAAQAAwAAAQ/cMlZqr2Tps13yVJBjOT4gYairqohCTDMsu4iHHgwr7UA/LqdopZS%27+%27DBBIpGG5lBQH0GgtU9xNJ9XZ1cnsNicRADs=%27);img.setAttribute(%27style%27,%27width:16px!important;height:12px!important;border:none!important;%27);a[i].appendChild(img);}})();
