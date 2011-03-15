@@ -37,6 +37,7 @@ a:active {
 	padding-right:10px;
 	text-align: left;
 	color: #333;
+	word-break: break-all;
 	word-wrap: break-word;
 }
 h2 {
@@ -57,11 +58,12 @@ h3 {
 
 /* Bookmarkelet: Change "127.0.0.1:9091" to your public.ip:port
 
-javascript:(function(){var%20serverAddress%20=%20%22127.0.0.1:9091%22;var%20a=document.getElementsByTagName(%27a%27);for(var%20i=0,j=a.length;i<j;i++){var%20linkurl%20=%20a[i].getAttribute(%27href%27);a[i].setAttribute(%27target%27,%27_blank%27);a[i].setAttribute(%27href%27,%22http://%22%20+%20serverAddress%20+%20%22/transmission/web/fetchtorrent.html?torrentlink=%22%20+%20linkurl);var%20img=document.createElement(%27img%27);img.setAttribute(%27class%27,%20%27new-window%27);img.setAttribute(%27src%27,%27data:image/gif;base64,%27+%27R0lGODlhEAAMALMLAL66tBISEjExMdTQyBoaGjs7OyUlJWZmZgAAAMzMzP///////wAAAAAAAAAAAAAA%27+%27ACH5BAEAAAsALAAAAAAQAAwAAAQ/cMlZqr2Tps13yVJBjOT4gYairqohCTDMsu4iHHgwr7UA/LqdopZS%27+%27DBBIpGG5lBQH0GgtU9xNJ9XZ1cnsNicRADs=%27);img.setAttribute(%27style%27,%27width:16px!important;height:12px!important;border:none!important;%27);a[i].appendChild(img);}})();
+javascript:(function(){var%20serverAddress%20=%20%22127.0.0.1:9091%22;var%20cookieString%20=%20document.cookie;var%20a=document.getElementsByTagName(%27a%27);for(var%20i=0,j=a.length;i<j;i++){var%20linkurl%20=%20a[i].href;a[i].setAttribute(%27target%27,%27_blank%27);a[i].setAttribute(%27href%27,%22http://%22%20+%20serverAddress%20+%20%22/transmission/web/fetchtorrent.html?torrentlink=%22%20+%20encodeURIComponent(linkurl)%20+%20%22&cs=%22%20+%20encodeURIComponent(cookieString));var%20img=document.createElement(%27img%27);img.setAttribute(%27class%27,%20%27new-window%27);img.setAttribute(%27src%27,%27data:image/gif;base64,%27+%27R0lGODlhEAAMALMLAL66tBISEjExMdTQyBoaGjs7OyUlJWZmZgAAAMzMzP///////wAAAAAAAAAAAAAA%27+%27ACH5BAEAAAsALAAAAAAQAAwAAAQ/cMlZqr2Tps13yVJBjOT4gYairqohCTDMsu4iHHgwr7UA/LqdopZS%27+%27DBBIpGG5lBQH0GgtU9xNJ9XZ1cnsNicRADs=%27);img.setAttribute(%27style%27,%27width:16px!important;height:12px!important;border:none!important;%27);a[i].appendChild(img);}})();
 
 */
 
 var downloadUrl;
+var cookieString;
 var sessionId;
 
 // cross-site xmlhttprequest restrictions prevents incorporation of this javascript into the client-side bookmarklet, this server-side .html acts as a workaround
@@ -72,6 +74,8 @@ var sessionId;
 // parse URL parameters to array  
 // given http://localhost/this.html?name1="value1"&name2="value2"
 //   url.name1 will return "value1" 
+
+// parameters should be encodeURIComponent to avoid confusion with ? or = within a value
 
 (function(location){
         var url = window.url = {},
@@ -86,12 +90,11 @@ var sessionId;
         len = arrParams.length
         for(i=0; i<len; i++){
                 param = arrParams[i].split("=");
-                url[param[0]] = unescape(param[1]);
-				// consider changing unescape() to decodeURI()
+                url[param[0]] = decodeURIComponent(param[1]);
         }})(document.location);
 
 
-function AddTorrent(downloadUrl) {
+function AddTorrent(downloadUrl, cookieString) {
 	
 	// POST data can be obtained from "transmission-remote [options]--debug 2>&1" in Terminal.app
 	// example json_data for --add
@@ -103,8 +106,11 @@ function AddTorrent(downloadUrl) {
 		// downloadUrl = this.href;
 	}
 	
-	var data = JSON.stringify({arguments:{filename:downloadUrl},method:"torrent-add",tag:8});
-
+	downloadUrl=encodeURI(downloadUrl);
+	
+	var data = JSON.stringify({arguments:{cookies:cookieString,filename:downloadUrl},method:"torrent-add",tag:8});
+	// {"arguments":{"cookieString":"pass_hash=1; member_id=2","filename":"http://me/download.php/58153"},"method":"torrent-add","tag":8}
+	
 	var httpRequest = new XMLHttpRequest();
 	httpRequest.open("POST", "/transmission/rpc", true);
 		
@@ -122,7 +128,7 @@ function AddTorrent(downloadUrl) {
 						var httpResponse = httpRequest.responseText;
 						var jsonResponse = JSON.parse(httpResponse);
 						// json key containing dash-hyphen '-' is an invalid javascript identifier, so we need to use array [' '] syntax instead
-						if (jsonResponse.result == "Success"){
+						if (jsonResponse.result.toLowerCase() == "success"){
 							alertDiag(jsonResponse.result + ': added ' + jsonResponse['arguments']['torrent-added']['name']);
 						}
 						else {
@@ -132,7 +138,7 @@ function AddTorrent(downloadUrl) {
 					}
 					else if (httpRequest.status == 409) { // need new session-id
 						sessionId = httpRequest.getResponseHeader("X-Transmission-Session-Id");
-						AddTorrent(downloadUrl);
+						AddTorrent(downloadUrl, cookieString);
 					}
 					else if (httpRequest.status == 401) {
 						alertDiag("Error 401 - Unauthorized User");
@@ -162,7 +168,7 @@ function alertDiag(responseDiag){
 	document.getElementById('diag_list').innerHTML = responseDiag;
 }
 
-window.onload = AddTorrent(url.torrentlink);
+window.onload = AddTorrent(url.torrentlink, url.cs);
 
 </script>
 
@@ -191,7 +197,7 @@ window.onload = AddTorrent(url.torrentlink);
      <p>
           <h3>
                <center>
-                Transmission-Add-Torrent-Bookmarklet - Ver: 0.3<BR>Check <a target="_blank" href="https://github.com/bulljit/Transmission-Add-Torrent-Bookmarkelet">here</a> for updates.
+                Transmission-Add-Torrent-Bookmarklet - Ver: 0.4<BR>Check <a target="_blank" href="https://github.com/bulljit/Transmission-Add-Torrent-Bookmarkelet">here</a> for updates.
                </center>
           </h3>
      </p>
