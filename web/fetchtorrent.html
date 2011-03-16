@@ -31,14 +31,15 @@ a:active {
 #diag_list{
 	background:url(images/graphics/bookmarklet/diag_mid.png) repeat-y;
 	font-family: Arial, Helvetica, sans-serif;
-	font-size: 14px;
+	font-size: 12px;
 	font-weight: bold;
 	padding-left:10px;
 	padding-right:10px;
-	text-align: left;
+	text-align: center;
 	color: #333;
-	word-break: break-all;
+	word-break: keep-all;
 	word-wrap: break-word;
+	width: 320px
 }
 h2 {
 	font-size: 11px;
@@ -129,7 +130,31 @@ function AddTorrent(downloadUrl, cookieString) {
 						var jsonResponse = JSON.parse(httpResponse);
 						// json key containing dash-hyphen '-' is an invalid javascript identifier, so we need to use array [' '] syntax instead
 						if (jsonResponse.result.toLowerCase() == "success"){
-							alertDiag(jsonResponse.result + ': added ' + jsonResponse['arguments']['torrent-added']['name']);
+						    var torrentname
+						    torrentname = jsonResponse['arguments']['torrent-added']['name']
+								    
+						    var cleanname = torrentname
+    						var intIndexOfMatch = cleanname.indexOf( "." );
+     
+    						// Loop over the string value replacing out each matching
+   							// substring.
+    						while (intIndexOfMatch != -1){
+    						// Relace out the current instance.
+    						cleanname = cleanname.replace( ".", "-" )
+     
+    						// Get the index of any next matching substring.
+    						intIndexOfMatch = cleanname.indexOf( "." );
+    						}
+						    
+						    cleanname = cleanname.replace( " avi", ".avi" )
+						    cleanname = cleanname.replace( " mpg", ".mpg" )
+						    cleanname = cleanname.replace( " mkv", ".mkv" )
+						    cleanname = cleanname.replace( " iso", ".iso" )
+						    cleanname = cleanname.replace( " dmg", ".dmg" )
+						    cleanname = cleanname.replace( " zip", ".zip" )
+						    cleanname = cleanname.replace( " rar", ".rar" )
+						    
+							alertDiag('Success! Added Torrent:<BR><BR>' + cleanname);							
 						}
 						else {
 							alertDiag('ERROR: ' + jsonResponse.result);
@@ -184,7 +209,7 @@ window.onload = AddTorrent(url.torrentlink, url.cs);
     <td><img src="images/graphics/bookmarklet/diag_top.png" width="299" height="32" /></td>
   </tr>
   <tr>
-    <td id="diag_list"><center>Downloading Torrent...<BR><BR><img src="images/graphics/bookmarklet/ajax-loader.gif" /><BR><H2>Please be patient while Transmission downloads the Torrent file to your computer.</H2></center></center></td>
+    <td id="diag_list"><center>Downloading Torrent...<BR><BR><img src="images/graphics/bookmarklet/ajax-loader.gif" /><BR><H2>Please be patient while Transmission<BR>downloads the Torrent file to your computer.</H2></center></center></td>
   </tr>
   <tr>
     <td><img src="images/graphics/bookmarklet/diag_bottom.png" width="299" /></td>
