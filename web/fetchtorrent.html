@@ -36,7 +36,7 @@ a:active {
 	font-weight: bold;
 	padding-left:10px;
 	padding-right:10px;
-	text-align: left;
+	text-align: center;
 	color: #333;
 	/* word-break: break-all; */
 	word-wrap: break-word;
@@ -130,7 +130,7 @@ function AddTorrent(downloadUrl, cookieString) {
 						var jsonResponse = JSON.parse(httpResponse);
 						// json key containing dash-hyphen '-' is an invalid javascript identifier, so we need to use array [' '] syntax instead
 						if (jsonResponse.result.toLowerCase() == "success"){
-							alertDiag(jsonResponse.result + ': added ' + jsonResponse['arguments']['torrent-added']['name']);
+							alertDiag('Success! Added Torrent:<BR><BR>"' + jsonResponse['arguments']['torrent-added']['name'] +'"');
 						}
 						else {
 							alertDiag('ERROR: ' + jsonResponse.result);
