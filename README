@@ -8,7 +8,8 @@ This solution uses a Bookmarklet on your phone to send the URL of a Torrent to y
 
 FEATURES
 
-- Works on iPhone, Desktop Browser (Firefox, Chrome, Safari). Other smartphones (Android etc.) should work - please let us know if they don't.
+- Works on all iOS devices (iPhone, iPad, iPod Touch). Other smartphones (Android etc.) should work - please let us know if they don't.
+- Also works from any desktop browser (Firefox, Chrome, Safari). Please let us know of any bugs.
 - Simple install of Bookmarklet from phone or desktop
 - Provides feedback of success / failure when adding Torrents
 - Works with Transmission remote username and password
@@ -81,6 +82,10 @@ KNOWN ISSUES
 - After Transmission auto-updates the server files need to be reinstalled
 
 After Transmission installs an automatic updated the old version is moved to the Trash and the server files will need to be readded in the new version. There is no known workaround for this at this stage.
+
+- High bandwidth usage of Transmission can slow access to RPC and the remote GUI, preventing Torrents from being added successfully
+
+It is recommended that you throttle Transmission downloads to a sensible limit to ensure that there is enough bandwidth left over for the webui & RPC access.
 
 - If you have a username and password set for Transmission Remote Access, you will need to enter them each time you click the bookmarklet.
 
