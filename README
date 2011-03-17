@@ -6,6 +6,14 @@ ABOUT THIS SOLUTION
 
 This solution uses a Bookmarklet on your phone to send the URL of a Torrent to your remote Transmission client. Your Transmission client then downloads the file and then reports back to your phone with a success/failure message. The disadvantage of this solution is that it requires some files to be installed on your server. The advantage is that there is minimal bandwidth usage between your phone and Transmission (great for use over EDGE connections).
 
+FEATURES
+
+- Works on iPhone, Desktop Browser (Firefox, Chrome, Safari). Other smartphones (Android etc.) should work - please let us know if they don't.
+- Simple install of Bookmarklet from phone or desktop
+- Provides feedback of success / failure when adding Torrents
+- Works with Transmission remote username and password
+- Support for Private Trackers
+
 VERSION HISTORY
 
 We have now added version numbering so you can check you have the latest version of the code. If your previous version has no version number then upgrade to the latest version. :) 
@@ -54,11 +62,13 @@ USAGE INSTRUCTIONS
 Follow these steps to add a torrent to Transmission from your Phone:
 
 1. In your phone's browser, open the page containing the Torrent file(s) you want to download.
-2. Once the page has loaded, open your bookmarks, and click the 'Download Torrent Remotely!' bookmark. This will modify the page to add a 'new window' icon next to all the links on the page.
-3. Click the 'download' link of the Torrent that you want.
-4. A new page will open, and sending the URL to your remote Transmission client. Transmission will then downloads the Torrent file, and start the download. The page will report success when its done.
-5. Once completed, press the 'X' to close the download window.
-6. Repeat from step 3 to download any other torrents from the page.
+2. Once the page has loaded, open your bookmarks, and click the 'Download Torrent Remotely!' bookmark. 
+3. Enter your Transmissions username and password if prompted. (See the known issues section on how to optionally have the bookmarklet do this for you.)
+4. The page will be modified to add a 'new window' icon next to all the links on the page. 
+5. Click the 'download' link of the Torrent that you want.
+6. A new page will open, and sending the URL to your remote Transmission client. Transmission will then download the Torrent file, and start the download. The page will report success when its done.
+7. Once completed, press the 'X' to close the download window.
+8. Repeat from step 5 to download any other torrents from the page.
 
 FEEDBACK
 
