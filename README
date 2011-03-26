@@ -68,8 +68,8 @@ Follow these steps to add a torrent to Transmission from your Phone:
 
 1. In your phone's browser, open the page containing the Torrent file(s) you want to download.
 2. Once the page has loaded, open your bookmarks, and click the 'Download Torrent Remotely!' bookmark. 
-3. Enter your Transmissions username and password if prompted. (See the known issues section on how to optionally have the bookmarklet do this for you.)
-4. The page will be modified to add a 'new window' icon next to all the links on the page. 
+3. Enter your Transmission username and password if prompted. (See the known issues section on how to optionally have the bookmarklet do this for you.)
+4. The page will be modified to add a 'new window' icon next to any possible Torrent files or Magnet links. 
 5. Click the 'download' link of the Torrent that you want.
 6. A new page will open, and sending the URL to your remote Transmission client. Transmission will then download the Torrent file, and start the download. The page will report success when its done.
 7. Once completed, press the 'X' to close the download window.
