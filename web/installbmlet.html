@@ -104,7 +104,7 @@ NewBookmarklet();
 function NewBookmarklet() {
 	
 	var jsString1 = 'javascript:(function(){var%20serverAddress%20=%20%22';
-	var jsString2 = '%22;var%20cookieString%20=%20document.cookie;var%20a=document.getElementsByTagName(%27a%27);for(var%20i=0,j=a.length;i<j;i++){var%20linkurl%20=%20a[i].href;a[i].setAttribute(%27target%27,%27_blank%27);a[i].setAttribute(%27href%27,%22http://%22%20+%20serverAddress%20+%20%22/transmission/web/fetchtorrent.html?torrentlink=%22%20+%20encodeURIComponent(linkurl)%20+%20%22&cs=%22%20+%20encodeURIComponent(cookieString));var%20img=document.createElement(%27img%27);img.setAttribute(%27class%27,%20%27new-window%27);img.setAttribute(%27src%27,%27data:image/gif;base64,%27+%27R0lGODlhEAAMALMLAL66tBISEjExMdTQyBoaGjs7OyUlJWZmZgAAAMzMzP///////wAAAAAAAAAAAAAA%27+%27ACH5BAEAAAsALAAAAAAQAAwAAAQ/cMlZqr2Tps13yVJBjOT4gYairqohCTDMsu4iHHgwr7UA/LqdopZS%27+%27DBBIpGG5lBQH0GgtU9xNJ9XZ1cnsNicRADs=%27);img.setAttribute(%27style%27,%27width:16px!important;height:12px!important;border:none!important;%27);a[i].appendChild(img);}})();';
+	var jsString2 = '%22;var%20cookieString%20=%20document.cookie;var%20a=document.getElementsByTagName(%27a%27);for(var%20i=0,j=a.length;i<j;i++){var%20linkurl%20=%20a[i].href;var%20testUrl%20=%20linkurl.substring(linkurl.lastIndexOf(%27/%27)%20+%201,%20linkurl.length);var%20testResult%20=%20testUrl.search(/(php\?|\.torrent$)/i);if%20(testResult%20==%20-1){var%20testResult%20=%20linkurl.search(/(magnet:\?|\/get\/|\/download\/|\/dl\/)/i);}if%20(testResult%20!=%20-1){a[i].setAttribute(%27target%27,%27_blank%27);a[i].setAttribute(%27href%27,%22http://%22%20+%20serverAddress%20+%20%22/transmission/web/fetchtorrent.html?torrentlink=%22%20+%20encodeURIComponent(linkurl)%20+%20%22&cs=%22%20+%20encodeURIComponent(cookieString));var%20img=document.createElement(%27img%27);img.setAttribute(%27class%27,%20%27new-window%27);img.setAttribute(%27src%27,%27data:image/gif;base64,%27+%27R0lGODlhEAAMALMLAL66tBISEjExMdTQyBoaGjs7OyUlJWZmZgAAAMzMzP///////wAAAAAAAAAAAAAA%27+%27ACH5BAEAAAsALAAAAAAQAAwAAAQ/cMlZqr2Tps13yVJBjOT4gYairqohCTDMsu4iHHgwr7UA/LqdopZS%27+%27DBBIpGG5lBQH0GgtU9xNJ9XZ1cnsNicRADs=%27);img.setAttribute(%27style%27,%27width:16px!important;height:12px!important;border:none!important;%27);a[i].appendChild(img);}}})();';
 
 	var hostBox = document.forms['bookmarklet_form'].host.value;
 	var portBox = document.forms['bookmarklet_form'].port.value;
@@ -131,7 +131,7 @@ function NewBookmarklet() {
 				If you haven't already done so you need to setup your Transmission client for remote access and install the extra server files for this bookmarklet. Help can be found <a target="_blank" href="https://github.com/bulljit/Transmission-Add-Torrent-Bookmarkelet/wiki">here</a>. Feedback should be posted <a target="_blank" href="https://forum.transmissionbt.com/viewtopic.php?f=8&t=11355">here</a>.
                       <BR>
                       <BR>
-                      <strong>Version: 0.4</strong> - Check for updates <a target="_blank" href="https://github.com/bulljit/Transmission-Add-Torrent-Bookmarkelet">here</a>.
+                      <strong>Version: 0.5</strong> - Check for updates <a target="_blank" href="https://github.com/bulljit/Transmission-Add-Torrent-Bookmarkelet">here</a>.
 
 
 			</p>
