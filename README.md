@@ -1,9 +1,10 @@
 # Bookmarklet for Adding a Torrent File to Transmission from your Mobile Phone #
 
-https://github.com/bulljit/Transmission-Add-Torrent-Bookmarkelet/
+[](https://github.com/bulljit/Transmission-Add-Torrent-Bookmarkelet/)
 
-Last Updated: 2011-04-28
+Last Updated: 2011-05-17
 
+0.7 - Fix for foreign characters in Url
 0.6 - Remove google-analytic cookies  
 0.5 - Filter for possible torrent links. Please report any sites that don't work  
 0.4 - Added Private Tracker support. Requires Transmission 2.30 or later  
@@ -18,17 +19,13 @@ These instructions already assume that you have setup Transmission for web acces
 To setup the bookmarklet:
 
 - Copy the server-side files to your Transmission/Web/ directory
-	- web/fetchtorrent.html
-    - web/installbmlet.html
-    - web/images/graphics/bookmarklet/* (All images)
-  
-- If using the native Mac OS X Transmission.app this should be located under "~/Applications/Transmission.app/Contents/Resources/web". You can access these folders by right-clicking on the Transmission.app icon and choosing 'Show Package Contents'.
+  - If using the native Mac OS X Transmission.app this should be located under "~/Applications/Transmission.app/Contents/Resources/web". You can access these folders by right-clicking on the Transmission.app icon and choosing 'Show Package Contents'.
 
 - Install the Bookmarklet on your phone:
 
 	- http://yourserver.ip:port/transmission/web/installbmlet.html
-	- Replace **yourserver.ip:port** with your server and port address
-
+		- Replace **yourserver.ip:port** with your server and port address
+	- most uptodate version of [bookmarklet](https://github.com/bulljit/Transmission-Add-Torrent-Bookmarkelet/issues/7)
 
 ## Usage Instructions ##
 
@@ -49,11 +46,12 @@ To setup the bookmarklet:
 - Works on all iOS devices and desktop browsers (though there better add-ons/extensions available for the latter)
 - Provides feedback of success / failure when adding Torrents
 - Works with Transmission remote username and password
-- Support for Private Trackers
+- Support for Private Trackers (requires Transmission v2.30+)
 
-## Credits ##
+## Special Thanks to ##
 
-bulljit - Original concept, Javascript & Server coding, Testing  
-saltedlolly - Installation UI, Documentation, Testing  
-netj - Caught bug with install page.  Visit his github site for an install bash script  
+jordan, @saltedlolly, @netj, @lidow
 
+## Todo ##
+
+* fork transmission_web files and install in `~/Library/Application Support/Transmission/web/` which will override the default for Transmission.app
