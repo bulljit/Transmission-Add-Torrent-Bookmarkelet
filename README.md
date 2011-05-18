@@ -4,7 +4,7 @@
 
 Last Updated: 2011-05-17
 
-0.7 - Fix for foreign characters in Url
+0.7 - Fix for foreign characters in URL
 0.6 - Remove google-analytic cookies  
 0.5 - Filter for possible torrent links. Please report any sites that don't work  
 0.4 - Added Private Tracker support. Requires Transmission 2.30 or later  
