@@ -41,6 +41,7 @@
 			background-color: #c5ccd3;
 			border: 1px solid #c5ccd3; /* workaround for a WebKit rendering bug */
 			}
+		
 		h1 {
 			font-size: 17px;
 			color: #4c566c;
@@ -83,7 +84,21 @@
 			margin: 0;
 			padding: 5px 10px;
 			}
-
+			
+			#code_box {
+				font-family       : monospace;
+			  color             : #000;
+			  background-color  : #eee;
+			  font-size         : 12px;
+			  overflow: auto;
+			  padding           : 5px;
+			  width             : 90%;
+			  margin: 10px;
+				border            : 1px dashed #999999;
+			  line-height       : 14px;
+			  clear:both;
+			}
+			
 	</style>
 	
 	<script type="text/javascript" charset="utf-8">
@@ -116,6 +131,8 @@ function NewBookmarklet() {
 	
 	document.links["from_mac"].href = bmkltCode;
 	document.links["from_iphone"].href = '#' + bmkltCode;
+
+	document.getElementById('code_line').innerText = bmkltCode;
 
 }
 
@@ -161,7 +178,7 @@ function NewBookmarklet() {
 </table><br>
 </form>
 			<p>	
-				* Note: Host should be your computer's external IP, not localhost, 127.0.0.1, 192.168.0.x, etc. If you need help finding this, visit <a target="_blank" href="http://checkip.dyndns.org">here</a>.
+				* Note: Host should be your computer's external IP, NOT localhost, 127.0.0.1, 192.168.0.x, etc. If you need help finding this, visit <a target="_blank" href="http://checkip.dyndns.org">here</a>.
 			</p>
 		</div>
 		
@@ -177,7 +194,11 @@ function NewBookmarklet() {
   	<p>First, click the link below to prepare the bookmarklet:</p>
     <strong><center><a href=" " name="from_iphone">Click to prepare iPhone install!</a></center></strong>
     <p>Now follow the steps below:</p>
-	</div>		
+	</div>
+	<div class="group">
+  	<p><strong>Manual install (bookmarklet code):</strong> </p>
+  	<pre id="code_box"><code id="code_line"></code></pre>
+	</div>
 		<h1>Step 1: Bookmark This Page</h1>
 		<div class="group">
 			<p>
