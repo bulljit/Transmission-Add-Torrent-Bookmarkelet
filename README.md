@@ -2,14 +2,14 @@
 
 [](https://github.com/bulljit/Transmission-Add-Torrent-Bookmarkelet/)
 
-Last Updated: 2011-05-17
+Last Updated: 2011-05-21
 
 0.7 - Fix for foreign characters in URL  
 0.6 - Remove google-analytic cookies  
-0.5 - Filter for possible torrent links. Please report any sites that don't work  
-0.4 - Added Private Tracker support. Requires Transmission 2.30 or later  
+0.5 - Filter for possible torrent links  
+0.4 - Added Private Tracker support (cookies). Requires Transmission 2.30+ 
 0.3 - CSS fixes  
-0.2 - Added installbmlet.html file for easy installation of the Bookmarklet to your phone  
+0.2 - Added webpage for easy installation  
 0.1 - Allows basic transfer of public Torrents to iPhone  
 
 ## Installation ##
@@ -23,7 +23,7 @@ To setup the bookmarklet:
 
 - Install the Bookmarklet on your phone:
 
-	- http://yourserver.ip:port/transmission/web/installbmlet.html
+	- http://yourserver.ip:port/transmission/web/installbookmarklet.html
 		- Replace **yourserver.ip:port** with your server and port address
 	- most uptodate version of [bookmarklet](https://github.com/bulljit/Transmission-Add-Torrent-Bookmarkelet/issues/7)
 
