@@ -7,7 +7,7 @@ Last Updated: 2011-05-21
 0.7 - Fix for foreign characters in URL  
 0.6 - Remove google-analytic cookies  
 0.5 - Filter for possible torrent links  
-0.4 - Added Private Tracker support (cookies). Requires Transmission 2.30+ 
+0.4 - Added Private Tracker support (cookies). Requires Transmission 2.30+  
 0.3 - CSS fixes  
 0.2 - Added webpage for easy installation  
 0.1 - Allows basic transfer of public Torrents to iPhone  

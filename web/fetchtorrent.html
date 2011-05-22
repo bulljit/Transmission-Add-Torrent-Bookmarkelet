@@ -108,8 +108,8 @@ function AddTorrent(downloadUrl, cookieString, versionNum) {
 		// downloadUrl = this.href;
 	}
 	
-	// downloadUrl=encodeURI(downloadUrl);
 	downloadUrl=decodeURIComponent(downloadUrl); //reencode foreign characters
+	downloadUrl=downloadUrl.replace(/\s/g,"%20"); //fix url with "spaces" without encoding foreign characters
 	
 	var data = JSON.stringify({arguments:{cookies:cookieString,filename:downloadUrl},method:"torrent-add",tag:8});
 	// {"arguments":{"cookieString":"pass_hash=1; member_id=2","filename":"http://me/download.php/58153"},"method":"torrent-add","tag":8}
